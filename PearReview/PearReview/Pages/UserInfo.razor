@@ -1,6 +1,8 @@
 ﻿@page "/UserInfo"
 @attribute [Authorize]
 
+@using System.Security.Claims;
+
 <h3 class="mb-5">User Info</h3>
 
 @if (user is not null)
@@ -48,11 +50,11 @@ else
     [CascadingParameter]
     public Task<AuthenticationState> AuthTask { get; set; }
 
-    private System.Security.Claims.ClaimsPrincipal user;
+    private ClaimsPrincipal user;
 
     protected async override Task OnInitializedAsync()
     {
         var authState = await AuthTask;
-        this.user = authState.User;
+        user = authState.User;
     }
 }

@@ -23,6 +23,15 @@ namespace PearReview.Data
                 .HasOne<AppUser>("Teacher") // Course has one User - navigation property name = "Teacher"
                 .WithMany() // User has many Courses - no navigational property
                 .IsRequired();
+            builder.Entity<Course>()
+                .HasMany<Resource>("Resources") // Course has many Resources - nav prop = "Resources"
+                .WithOne("Course") // each Resource has one Course - nav prop = "Course"
+                .IsRequired(false); // optional
+
+            builder.Entity<Resource>()
+                .HasOne<AppUser>("Uploader")
+                .WithMany()
+                .IsRequired();
 
             // Set Identity table names
             builder.Entity<AppUser>().ToTable("Users");
@@ -42,6 +51,8 @@ namespace PearReview.Data
 
         public DbSet<Course> Courses { get; set; }
 
-        public DbSet<AppUser> Users { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
+
+        public DbSet<Resource> Resources { get; set; }
     }
 }

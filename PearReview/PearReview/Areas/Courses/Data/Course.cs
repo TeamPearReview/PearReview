@@ -1,4 +1,5 @@
 ﻿using PearReview.Areas.Identity.Data;
+using PearReview.Data;
 using System.ComponentModel.DataAnnotations;
 
 namespace PearReview.Areas.Courses.Data
@@ -22,5 +23,7 @@ namespace PearReview.Areas.Courses.Data
 
         [Required]
         public DateTime CreatedOn { get; set; }
+
+        public ICollection<Resource> Resources { get; set; }
     }
 }

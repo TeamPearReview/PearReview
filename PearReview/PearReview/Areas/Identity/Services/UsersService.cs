@@ -18,11 +18,11 @@ namespace PearReview.Areas.Identity.Services
         {
             using AppDbContext context = factory.CreateDbContext();
 
-            if (context.Users == null)
+            if (context.AppUsers == null)
             {
                 return Task.FromResult(new List<AppUser>());
             }
-            return context.Users.ToListAsync();
+            return context.AppUsers.ToListAsync();
         }
     }
 }

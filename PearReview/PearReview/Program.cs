@@ -50,6 +50,7 @@ builder.Services.AddDefaultIdentity<AppUser>(
 builder.Services.AddScoped<CurrentUserService>();
 builder.Services.AddTransient<UsersService>();
 builder.Services.AddTransient<CoursesService>();
+builder.Services.AddTransient<ResourcesService>();
 
 builder.Services.AddScoped<TokenProvider>();
 
