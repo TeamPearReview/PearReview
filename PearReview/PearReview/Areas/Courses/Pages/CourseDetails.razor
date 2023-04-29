@@ -115,7 +115,9 @@ else
                 Filename = file.Name,
                 Path = storagePath,
                 Size = file.Size,
-                Uploader = currentUser,
+                UploaderId = currentUser.Id,
+                CourseId = course.Id,
+                //Uploader = currentUser,
                 //Course = course,
                 CreatedOn = DateTime.Now
             };
@@ -146,11 +148,16 @@ else
             {
                 await source.CopyToAsync(destination);
             }
-            
+
             File.Delete(sourcePath);
         }
 
+        // Update database
         await ResourcesSvc.AddResources(newUploads);
+        newUploads.Clear();
+
+        // Fetch the newly added Resources as part of the course object
+        course = await CoursesSvc.GetCourseById(course.Id);
     }
 
 }

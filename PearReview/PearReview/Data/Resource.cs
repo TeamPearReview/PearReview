@@ -23,11 +23,18 @@ namespace PearReview.Data
         public long Size { get; set; }
 
         [Required]
-        public AppUser Uploader { get; set; }
+        public string UploaderId { get; set; }
 
-        public Course? Course{ get; set; }
+        [Required]
+        public int CourseId { get; set; }
 
         [Required]
         public DateTime CreatedOn { get; set; }
+
+        // Navigation properties
+
+        public AppUser Uploader { get; set; }
+
+        public Course? Course { get; set; }
     }
 }
