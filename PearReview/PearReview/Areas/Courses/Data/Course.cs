@@ -16,7 +16,7 @@ namespace PearReview.Areas.Courses.Data
         public string? Description { get; set; }
 
         [Required]
-        public AppUser Teacher { get; set; }
+        public string TeacherId { get; set; }
 
         [Required]
         public DateTime StartDate { get; set; } = DateTime.Now;
@@ -25,5 +25,9 @@ namespace PearReview.Areas.Courses.Data
         public DateTime CreatedOn { get; set; }
 
         public ICollection<Resource> Resources { get; set; }
+
+        // Navigation properties
+
+        public AppUser Teacher { get; set; }
     }
 }
